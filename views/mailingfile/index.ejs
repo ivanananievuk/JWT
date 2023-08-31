@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/mailingfile.css">
+  <title>Mailing File</title>
+</head>
+
+<body>
+
+    <form action="/mailingfile" method="POST">
+
+        <input required type="file" id="fileInput">
+        <div id="dropArea" class="drop-area">
+          <p>Drag and drop files here</p>
+        </div>
+
+        Client:
+        <select id="client">
+            <% ClientList.forEach(async (element) => { %>
+                <option><%= element %></option>
+              <% }) %>  
+
+        </select>
+
+
+        Profile:
+        <select id="profile">
+            
+        </select>
+
+
+
+        <button type="submit">Submit</button>
+    </form>
+  
+   
+    <a href="/mailingfile/clients">
+        <button id="btn">Edit Profiles</button>
+    </a>
+  
+</body>
+
+</html>
+
+<script>
+    const client = document.getElementById('client');
+    const fileInput = document.getElementById('fileInput');
+    const dropArea = document.getElementById('dropArea');
+
+    client.addEventListener('change', ()=>{
+        console.log('yes')
+    })
+
+
+    dropArea.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  dropArea.classList.add('active');
+});
+
+// Handle the file drop
+dropArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropArea.classList.remove('active');
+
+  const files = e.dataTransfer.files;
+  handleFiles(files);
+});
+
+// Handle the dropped or selected files
+function handleFiles(files) {
+  for (const file of files) {
+    console.log('File:', file.name);
+    // You can perform further actions with the file, such as uploading it to the server
+  }
+}
+
+</script>

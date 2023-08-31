@@ -1,0 +1,141 @@
+<%- include('../partials/header'); -%>
+
+
+<style>
+    #pass{
+      color: black;
+      border: 1px solid black;
+      text-align: center;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    
+    #pass:hover{
+      
+      background-color: #FEE996;
+      border: 1px solid #FEE996;
+      text-align: center;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    #theButtons{
+        background-color: none;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    #update{
+        background-color: #3D9970;
+        cursor: pointer;
+    }
+    #delete{
+        background-color: #FF4136;
+        align-self: flex-end;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        cursor: pointer;
+ 
+}
+
+#delete:hover{
+  background-color: #750801;
+  color: white;
+}
+    </style>
+    
+
+<body>
+  
+  
+    <div class="form-container">
+      
+      <form action="/main/<%- result.id %>" method="POST">
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" value="<%= result.FirstName %>" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" value="<%= result.LastName %>" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" value="<%= result.Email %>" required>
+        </div>
+        <div class="form-group">
+          <label for="admin">Admin:</label>
+          <select id="admin" name="admin" value="<%= result.Admin %>">
+            <option value="unspecified"></option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            
+          </select>
+          <%= result.Admin %>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="number" id="phone" name="phone" value="<%= result.Phone %>">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password Reset:</label>
+          <input type="text" id="password" value="" name="password" placeholder="Enter a new password...">
+          <div id="pass">Random Password</div>
+        </div>
+
+        <input type="hidden" name="id" value="<%= result.id %>">
+        
+<div id="theButtons">
+    <button type="submit" id="update">Update</button>
+    <div id="delete" data-doc="<%= result._id %>">Delete</div>
+
+
+</div>
+       
+      </form>
+    </div>
+  
+  </body>
+
+  <script>
+    // Function to generate a random password
+    function generateRandomPassword() {
+      const length = Math.floor(Math.random() * 3) + 6; // Generate length between 6 and 8
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+  
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters.charAt(randomIndex);
+      }
+  
+      return password;
+    }
+  
+    const btn = document.getElementById('pass');
+    const passwordInput = document.getElementById('password');
+  
+    btn.addEventListener('click', () => {
+      const newPass = generateRandomPassword(); // Generate random password
+      passwordInput.value = newPass; // Set the new value in the input field
+    });
+
+    const del = document.getElementById('delete');
+    del.addEventListener('click', ()=>{
+      const endpoint = `/main/${del.dataset.doc}`;
+      //console.log(endpoint)
+
+      fetch(endpoint, {
+       method: 'DELETE'
+     })
+     .then((response)=>response.json())
+     .then((data)=> window.location.href = data.redirect)
+
+    })
+
+
+  </script>

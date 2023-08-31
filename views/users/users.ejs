@@ -1,0 +1,36 @@
+<%- include('../partials/header'); -%>
+
+<body>
+    <nav class="top-bar">
+      <button class="add-button"><a href="/main/newuser">New User</a></button>
+    </nav>
+  
+    <!-- Your content goes here -->
+    <br>
+
+   
+    <br>
+
+   
+    <% if(result.length > 0) { %>
+
+        <% result.forEach(element => { %>
+          <div class="elementContainer">
+        <a class="single" href="/main/<%= element._id %>">
+            <%= element.FirstName %> 
+            <%= element.LastName%>
+            <%= element.Email %>
+
+    
+        </a>
+        </div>
+
+        </br>
+
+            
+       <% }) %>
+
+        <% } %>
+  
+  </body>
+</html>

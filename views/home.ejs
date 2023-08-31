@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ice</title>
+  <link rel="stylesheet" href="/login.css">
+</head>
+
+<style>
+  #email_error{
+    color: red;
+  }
+  #password_error{
+    color: red;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <h1>Welcome</h1>
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <div id="email_error"></div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <div id="password_error"></div>
+      </div>
+      <button type="submit"> Login</button>
+      
+    </form>
+  </div>
+</body>
+<script>
+  const form = document.querySelector('form');
+  const email_error = document.getElementById('email_error');
+  const password_error = document.getElementById('password_error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    email_error.textContent = " ";
+    password_error.textContent = " ";
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    try {
+      const attempt = await fetch(`/`, {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const data = await attempt.json();
+      console.log(data)
+      if(data.issue){
+        //email_error.textContent = "test";
+       // password_error.textContent = 'test2';
+       const issue = data.issue;
+
+        if(issue.includes('Password')){
+          password_error.textContent = issue;
+        }
+        if(issue.includes('Email')){
+          email_error.textContent = issue;
+        }
+      }
+      if(data.user){
+        console.log('--------------------------- ')
+        location.assign('/main');
+
+      }
+
+      
+    } catch (err) {
+      console.log(err);
+    }
+  });
+</script>
+
+   <!--  <a href="/main" class="btn">Continue</a> -->
+
