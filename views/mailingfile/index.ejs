@@ -9,9 +9,9 @@
 
 <body>
 
-    <form action="/mailingfile" method="POST">
+    <form action="/mailingfile" method="POST" enctype="multipart/form-data">
 
-        <input required type="file" id="fileInput">
+      <input required type="file" name="fileInput" id="fileInput">
         <div id="dropArea" class="drop-area">
           <p>Drag and drop files here</p>
         </div>
