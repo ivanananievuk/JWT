@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Router = require('./routes/main');
-const MailingFile = require('./routes/mailingfile');
+//const MailingFile = require('./routes/mailingfile');
 
 const cookies = require('cookie-parser');
 const userModel = require('./models/usermodel');
@@ -68,5 +68,5 @@ app.post('/', async (req, res) => {
 
 
 app.use('/main',Router);
-app.use('/mailingfile', MailingFile);
+
 //app.use('/main/users', userRouter);
