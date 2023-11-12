@@ -56,3 +56,8 @@ body {
     border: 1px solid #007bff;
   }
   
+  #register{
+    float: left;
+    background-color: #444;
+    opacity: 0.5;
+  }
