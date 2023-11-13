@@ -63,6 +63,26 @@ app.post('/', async (req, res) => {
  
 });
 
+app.get('/register',(req, res) => res.render('register'));
+app.post('/register', async (req, res) => {
+
+
+  setInterval(function() {
+    console.log("Hello, World!");
+}, 5000); 
+
+
+   //res.render("/verify");
+   const data = req.body;
+
+   res.render('verify',  req.body );
+
+   
+
+});
+
+app.get('/verify',(req, res) => res.render('verify'));
+
 
 
 

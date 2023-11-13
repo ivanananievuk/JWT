@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/register.css">
+
+    <title>User Registration Form</title>
+</head>
+<body>
+
+<h2>User Registration Form</h2>
+
+<form action="/verify" method="POST">
+
+    <label for="code">A 6-digit verification code has been sent to your <%= email %>. Kindly check your inbox and enter the provided code for verification.</label>
+    <input type="number" id="code" name="code" required>
+ 
+    <input type="text" id="firstName" name="firstName" required hidden value="<%- firstName %>">
+    <input type="text" id="lastName" name="lastName" required hidden value="lastName">
+    <input type="email" id="email" name="email" required hidden value="email"> 
+    <input type="tel" id="phone" name="phone" hidden value="tel">  
+    <input type="text" id="address" name="address" placeholder="Main Address" required hidden value="<%- address %>">     
+    <input type="text" id="zipCode" name="zipCode" required hidden value="<%- zipCode  %>">
+    <input type="text" id="city" name="city" required hidden value="<%- city%>">
+    <input type="text" id="country" name="country" required hidden value="<%- country %>">  
+    <input type="password" id="password" name="password" required hidden value="<%- password  %>">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
