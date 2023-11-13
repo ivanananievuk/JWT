@@ -74,14 +74,14 @@ app.post('/register', async (req, res) => {
 
    //res.render("/verify");
    const data = req.body;
-
-   res.render('verify',  req.body );
+   res.render('verify',  data );
 
    
 
 });
 
 app.get('/verify',(req, res) => res.render('verify'));
+app.post('/verify', (req,res)=>{res.send(req.body)})
 
 
 

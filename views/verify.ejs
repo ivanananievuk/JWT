@@ -13,18 +13,19 @@
 
 <form action="/verify" method="POST">
 
-    <label for="code">A 6-digit verification code has been sent to your <%= email %>. Kindly check your inbox and enter the provided code for verification.</label>
-    <input type="number" id="code" name="code" required>
- 
+    <label for="code">A 6-digit verification code has been sent to <span> <%= email %> </span>.Kindly check your inbox and enter the provided code for verification. This session remains active for a duration of <span> 5 minutes</span>.</label>
+    <input type="number" id="code" name="code" maxlength="6">
+
     <input type="text" id="firstName" name="firstName" required hidden value="<%- firstName %>">
-    <input type="text" id="lastName" name="lastName" required hidden value="lastName">
-    <input type="email" id="email" name="email" required hidden value="email"> 
-    <input type="tel" id="phone" name="phone" hidden value="tel">  
+    <input type="text" id="lastName" name="lastName" required hidden value="<%- lastName%>">
+    <input type="email" id="email" name="email" required hidden  value="<%- email %>"> 
+    <input type="tel" id="phone" name="phone" hidden value="<%- tel %>">  
     <input type="text" id="address" name="address" placeholder="Main Address" required hidden value="<%- address %>">     
     <input type="text" id="zipCode" name="zipCode" required hidden value="<%- zipCode  %>">
     <input type="text" id="city" name="city" required hidden value="<%- city%>">
     <input type="text" id="country" name="country" required hidden value="<%- country %>">  
     <input type="password" id="password" name="password" required hidden value="<%- password  %>">
+
     <input type="submit" value="Submit">
 </form>
 

@@ -58,7 +58,19 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+/*
 input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+  /*-moz-appearance: textfield; /* Firefox */
+
+span{
+    color: red;
+}
+
+#code{
+    
+        text-align: center;
+      /*  width: 2em; /* Set the width to accommodate 6 digits */
+        margin: 0 auto; /* Center the input field */
+        display: block; /* Make it a block element to center it */
+    
 }
